@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum Category {
-    JAPAN(1, List.of(
+    JAPAN(1, "일식", List.of(
             new Menu("규동"),
             new Menu("우동"),
             new Menu("미소시루"),
@@ -16,7 +16,7 @@ public enum Category {
             new Menu("오코노미야끼")
     )),
     //김밥, 김치찌개, 쌈밥, 된장찌개, 비빔밥, 칼국수, 불고기, 떡볶이, 제육볶음
-    KOREA(2, List.of(
+    KOREA(2, "한식", List.of(
             new Menu("김밥"),
             new Menu("김치찌개"),
             new Menu("쌈밥"),
@@ -27,7 +27,7 @@ public enum Category {
             new Menu("떡볶이"),
             new Menu("제육볶음")
     )),
-    CHINA(3, List.of(
+    CHINA(3, "중식", List.of(
             new Menu("깐풍기"),
             new Menu("볶음면"),
             new Menu("동파육"),
@@ -38,7 +38,7 @@ public enum Category {
             new Menu("토마토 달걀볶음"),
             new Menu("고추잡채")
     )),
-    ASIAN(4, List.of(
+    ASIAN(4, "아시안", List.of(
             new Menu("팟타이"),
             new Menu("카오 팟"),
             new Menu("나시고렝"),
@@ -49,7 +49,7 @@ public enum Category {
             new Menu("월남쌈"),
             new Menu("분짜")
     )),
-    WESTERN(5, List.of(
+    WESTERN(5, "양식", List.of(
             new Menu("라자냐"),
             new Menu("그라탱"),
             new Menu("뇨끼"),
@@ -62,10 +62,12 @@ public enum Category {
     ));
 
     private final int symbol;
+    private final String name;
     private final List<Menu> menus;
 
-    Category(int symbol, List<Menu> menus) {
+    Category(int symbol, String name, List<Menu> menus) {
         this.symbol = symbol;
+        this.name = name;
         this.menus = menus;
     }
 
@@ -87,6 +89,10 @@ public enum Category {
 
     public List<Menu> getMenus() {
         return menus;
+    }
+
+    public String getName() {
+        return name;
     }
 
     private boolean isEqualSymbol(int symbol) {

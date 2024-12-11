@@ -2,6 +2,7 @@ package menu.converter;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import menu.domain.Coach;
 
 public class StringToCoachesConverter implements Converter<String, List<Coach>> {
@@ -19,6 +20,6 @@ public class StringToCoachesConverter implements Converter<String, List<Coach>> 
         }
         return Arrays.stream(coachNames)
                 .map(Coach::new)
-                .toList();
+                .collect(Collectors.toList());
     }
 }

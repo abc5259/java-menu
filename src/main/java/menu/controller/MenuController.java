@@ -33,5 +33,6 @@ public class MenuController {
 
         Lunch lunch = new Lunch(new MenuSuggestionMachine(), coaches, new LinkedHashMap<>());
         lunch.eat(List.of(MON, TUE, WED, THU, FRI));
+        outputView.printLunchMenus(lunch);
     }
 }

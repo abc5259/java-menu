@@ -48,4 +48,8 @@ public class Coach {
     public void eat(Day day, Menu suggestionMenu) {
         eatMenuInfos.put(day, suggestionMenu);
     }
+
+    public Menu getDayMenu(Day day) {
+        return eatMenuInfos.get(day);
+    }
 }
