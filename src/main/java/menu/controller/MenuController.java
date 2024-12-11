@@ -1,5 +1,7 @@
 package menu.controller;
 
+import java.util.List;
+import menu.domain.Coach;
 import menu.view.OutputView;
 
 public class MenuController {
@@ -13,5 +15,6 @@ public class MenuController {
 
     public void process() {
         outputView.printStartMessage();
+        List<Coach> coaches = iteratorInputHandler.inputCoaches();
     }
 }

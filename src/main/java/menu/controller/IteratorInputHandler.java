@@ -1,5 +1,8 @@
 package menu.controller;
 
+import java.util.List;
+import menu.converter.StringToCoachesConverter;
+import menu.domain.Coach;
 import menu.view.InputView;
 
 public class IteratorInputHandler {
@@ -12,5 +15,11 @@ public class IteratorInputHandler {
         this.iteratorInputTemplate = iteratorInputTemplate;
     }
 
+    public List<Coach> inputCoaches() {
+        return iteratorInputTemplate.execute(
+                inputView::inputCoach,
+                new StringToCoachesConverter()
+        );
+    }
 
 }
