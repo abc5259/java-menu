@@ -2,7 +2,9 @@ package menu.controller;
 
 import java.util.List;
 import menu.converter.StringToCoachesConverter;
+import menu.converter.StringToMenusConverter;
 import menu.domain.Coach;
+import menu.domain.Menu;
 import menu.view.InputView;
 
 public class IteratorInputHandler {
@@ -22,4 +24,10 @@ public class IteratorInputHandler {
         );
     }
 
+    public List<Menu> inputNoEatMenu(String coachName) {
+        return iteratorInputTemplate.execute(
+                () -> inputView.inputNoEatMenuName(coachName),
+                new StringToMenusConverter()
+        );
+    }
 }

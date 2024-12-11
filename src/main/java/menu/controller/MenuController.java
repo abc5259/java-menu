@@ -2,6 +2,7 @@ package menu.controller;
 
 import java.util.List;
 import menu.domain.Coach;
+import menu.domain.Menu;
 import menu.view.OutputView;
 
 public class MenuController {
@@ -16,5 +17,9 @@ public class MenuController {
     public void process() {
         outputView.printStartMessage();
         List<Coach> coaches = iteratorInputHandler.inputCoaches();
+        for (Coach coach : coaches) {
+            List<Menu> menus = iteratorInputHandler.inputNoEatMenu(coach.getName());
+            coach.settingNoEatMenus(menus);
+        }
     }
 }

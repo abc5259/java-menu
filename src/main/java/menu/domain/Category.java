@@ -15,15 +15,16 @@ public enum Category {
             new Menu("라멘"),
             new Menu("오코노미야끼")
     )),
+    //김밥, 김치찌개, 쌈밥, 된장찌개, 비빔밥, 칼국수, 불고기, 떡볶이, 제육볶음
     KOREA(2, List.of(
             new Menu("김밥"),
             new Menu("김치찌개"),
             new Menu("쌈밥"),
-            new Menu("스시"),
             new Menu("된장찌개"),
             new Menu("비빔밥"),
             new Menu("칼국수"),
             new Menu("불고기"),
+            new Menu("떡볶이"),
             new Menu("제육볶음")
     )),
     CHINA(3, List.of(
@@ -73,6 +74,15 @@ public enum Category {
                 .filter(category -> category.isEqualSymbol(symbol))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("해당하는 카테코리를 찾을 수 없습니다."));
+    }
+
+    public static Menu findMenu(String menuName) {
+        Menu findMenu = new Menu(menuName);
+        return Arrays.stream(Category.values())
+                .flatMap(category -> category.menus.stream())
+                .filter(menu -> menu.equals(findMenu))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("메뉴를 찾을 수 없습니다."));
     }
 
     private boolean isEqualSymbol(int symbol) {
