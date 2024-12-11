@@ -1,6 +1,8 @@
 package menu.domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Coach {
 
@@ -9,10 +11,16 @@ public class Coach {
 
     private final String name;
     private List<Menu> noEatMenus;
+    private final Map<Day, Menu> eatMenuInfos;
 
     public Coach(String name) {
+        this(name, new HashMap<>());
+    }
+
+    public Coach(String name, Map<Day, Menu> eatMenuInfos) {
         validateName(name);
         this.name = name.trim();
+        this.eatMenuInfos = eatMenuInfos;
     }
 
     public void validateName(String name) {
@@ -31,5 +39,13 @@ public class Coach {
 
     public String getName() {
         return name;
+    }
+
+    public boolean isEatMenu(Menu menu) {
+        return !noEatMenus.contains(menu) && !eatMenuInfos.containsValue(menu);
+    }
+
+    public void eat(Day day, Menu suggestionMenu) {
+        eatMenuInfos.put(day, suggestionMenu);
     }
 }

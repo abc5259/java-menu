@@ -85,6 +85,10 @@ public enum Category {
                 .orElseThrow(() -> new IllegalArgumentException("메뉴를 찾을 수 없습니다."));
     }
 
+    public List<Menu> getMenus() {
+        return menus;
+    }
+
     private boolean isEqualSymbol(int symbol) {
         return this.symbol == symbol;
     }
