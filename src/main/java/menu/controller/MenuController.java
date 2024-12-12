@@ -6,8 +6,9 @@ import static menu.domain.Day.THU;
 import static menu.domain.Day.TUE;
 import static menu.domain.Day.WED;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.List;
+import menu.domain.CategorySuggestionMachine;
 import menu.domain.Coach;
 import menu.domain.Lunch;
 import menu.domain.Menu;
@@ -31,7 +32,11 @@ public class MenuController {
             coach.settingNoEatMenus(menus);
         }
 
-        Lunch lunch = new Lunch(new MenuSuggestionMachine(), coaches, new LinkedHashMap<>());
+        Lunch lunch = new Lunch(
+                new MenuSuggestionMachine(),
+                new CategorySuggestionMachine(),
+                coaches,
+                new HashMap<>());
         lunch.eat(List.of(MON, TUE, WED, THU, FRI));
         outputView.printLunchMenus(lunch);
     }

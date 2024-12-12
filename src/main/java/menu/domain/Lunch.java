@@ -1,30 +1,29 @@
 package menu.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Lunch {
 
     private final MenuSuggestionMachine menuSuggestionMachine;
+    private final CategorySuggestionMachine categorySuggestionMachine;
     private final List<Coach> coaches;
     private final Map<Day, Category> eatCategoryInfos;
 
-    public Lunch(MenuSuggestionMachine menuSuggestionMachine,
+    public Lunch(MenuSuggestionMachine menuSuggestionMachine, CategorySuggestionMachine categorySuggestionMachine,
                  List<Coach> coaches,
                  Map<Day, Category> eatCategoryInfos) {
         this.menuSuggestionMachine = menuSuggestionMachine;
+        this.categorySuggestionMachine = categorySuggestionMachine;
         this.coaches = coaches;
         this.eatCategoryInfos = eatCategoryInfos;
     }
 
     public void eat(List<Day> days) {
         for (Day day : days) {
-            Category category;
-            do {
-                category = Category.findBySymbol(Randoms.pickNumberInRange(1, 5));
-            } while (categoryCount(category) >= 2);
+            Category category = categorySuggestionMachine.suggestion(getterCategoryInfos());
             eatCategoryInfos.put(day, category);
 
             for (Coach coach : coaches) {
@@ -46,5 +45,10 @@ public class Lunch {
 
     public Map<Day, Category> getEatCategoryInfos() {
         return Collections.unmodifiableMap(eatCategoryInfos);
+    }
+
+    private Map<Category, Long> getterCategoryInfos() {
+        return eatCategoryInfos.values().stream()
+                .collect(Collectors.groupingBy((category) -> category, Collectors.counting()));
     }
 }
