@@ -11,7 +11,7 @@ public class MenuSuggestionMachine {
             List<String> collect = menus.stream().map(Menu::name).collect(Collectors.toList());
             String menuName = listShuffleStrategy.shuffle(collect).get(0);
             menu = new Menu(menuName);
-        } while (!coach.isEatMenu(menu));
+        } while (!coach.canEatMenu(menu));
         return menu;
     }
 }

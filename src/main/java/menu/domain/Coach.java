@@ -41,7 +41,7 @@ public class Coach {
         return name;
     }
 
-    public boolean isEatMenu(Menu menu) {
+    public boolean canEatMenu(Menu menu) {
         return !noEatMenus.contains(menu) && !eatMenuInfos.containsValue(menu);
     }
 
