@@ -13,6 +13,7 @@ import menu.domain.Coach;
 import menu.domain.Lunch;
 import menu.domain.Menu;
 import menu.domain.MenuSuggestionMachine;
+import menu.domain.strategy.RandomNumberPickInRangeStrategy;
 import menu.view.OutputView;
 
 public class MenuController {
@@ -37,7 +38,7 @@ public class MenuController {
                 new CategorySuggestionMachine(),
                 coaches,
                 new HashMap<>());
-        lunch.eat(List.of(MON, TUE, WED, THU, FRI));
+        lunch.eat(List.of(MON, TUE, WED, THU, FRI), new RandomNumberPickInRangeStrategy());
         outputView.printLunchMenus(lunch);
     }
 }

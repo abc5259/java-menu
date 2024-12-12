@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import menu.domain.strategy.NumberPickInRangeStrategy;
 
 public class Lunch {
 
@@ -21,9 +22,9 @@ public class Lunch {
         this.eatCategoryInfos = eatCategoryInfos;
     }
 
-    public void eat(List<Day> days) {
+    public void eat(List<Day> days, NumberPickInRangeStrategy numberPickInRangeStrategy) {
         for (Day day : days) {
-            Category category = categorySuggestionMachine.suggestion(getterCategoryInfos());
+            Category category = categorySuggestionMachine.suggestion(getterCategoryInfos(), numberPickInRangeStrategy);
             eatCategoryInfos.put(day, category);
 
             for (Coach coach : coaches) {
