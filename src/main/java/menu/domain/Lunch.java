@@ -38,12 +38,6 @@ public class Lunch {
         }
     }
 
-    private int categoryCount(Category category) {
-        return (int) eatCategoryInfos.values().stream()
-                .filter(currCategory -> currCategory == category)
-                .count();
-    }
-
     public List<Coach> getCoaches() {
         return Collections.unmodifiableList(coaches);
     }
