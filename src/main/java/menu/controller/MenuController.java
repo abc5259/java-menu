@@ -14,6 +14,7 @@ import menu.domain.Lunch;
 import menu.domain.Menu;
 import menu.domain.MenuSuggestionMachine;
 import menu.domain.strategy.RandomNumberPickInRangeStrategy;
+import menu.domain.strategy.RandomShuffleStrategy;
 import menu.view.OutputView;
 
 public class MenuController {
@@ -38,7 +39,10 @@ public class MenuController {
                 new CategorySuggestionMachine(),
                 coaches,
                 new HashMap<>());
-        lunch.eat(List.of(MON, TUE, WED, THU, FRI), new RandomNumberPickInRangeStrategy());
+        lunch.eat(
+                List.of(MON, TUE, WED, THU, FRI),
+                new RandomNumberPickInRangeStrategy(),
+                new RandomShuffleStrategy());
         outputView.printLunchMenus(lunch);
     }
 }

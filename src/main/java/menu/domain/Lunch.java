@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import menu.domain.strategy.ListShuffleStrategy;
 import menu.domain.strategy.NumberPickInRangeStrategy;
 
 public class Lunch {
@@ -13,7 +14,8 @@ public class Lunch {
     private final List<Coach> coaches;
     private final Map<Day, Category> eatCategoryInfos;
 
-    public Lunch(MenuSuggestionMachine menuSuggestionMachine, CategorySuggestionMachine categorySuggestionMachine,
+    public Lunch(MenuSuggestionMachine menuSuggestionMachine,
+                 CategorySuggestionMachine categorySuggestionMachine,
                  List<Coach> coaches,
                  Map<Day, Category> eatCategoryInfos) {
         this.menuSuggestionMachine = menuSuggestionMachine;
@@ -22,13 +24,15 @@ public class Lunch {
         this.eatCategoryInfos = eatCategoryInfos;
     }
 
-    public void eat(List<Day> days, NumberPickInRangeStrategy numberPickInRangeStrategy) {
+    public void eat(List<Day> days,
+                    NumberPickInRangeStrategy numberPickInRangeStrategy,
+                    ListShuffleStrategy listShuffleStrategy) {
         for (Day day : days) {
             Category category = categorySuggestionMachine.suggestion(getterCategoryInfos(), numberPickInRangeStrategy);
             eatCategoryInfos.put(day, category);
 
             for (Coach coach : coaches) {
-                Menu suggestionMenu = menuSuggestionMachine.suggestion(category.getMenus(), coach);
+                Menu suggestionMenu = menuSuggestionMachine.suggestion(category.getMenus(), coach, listShuffleStrategy);
                 coach.eat(day, suggestionMenu);
             }
         }
